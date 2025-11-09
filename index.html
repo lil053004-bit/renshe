@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>期間限定無料！株式投資セミナー</title>
+    <title>株式投資教育セミナー | 投資知識を学ぶ</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
@@ -34,8 +34,9 @@ function gtag_report_conversion(url) {
 </script>
 <script>
     function showLine(){
-        gtag_report_conversion('https://www.google.com');
-         return false;
+        // TODO: Replace with actual LINE contact URL
+        alert('お問い合わせありがとうございます。LINEのリンクを設定してください。');
+        return false;
     }
 </script>
 
@@ -121,49 +122,36 @@ function gtag_report_conversion(url) {
 
         .cta-button {
             display: inline-block;
-            padding: 20px 50px;
-            background: linear-gradient(135deg, #ff6b6b, #ff5252);
+            padding: 18px 45px;
+            background: linear-gradient(135deg, #4a90e2, #357abd);
             color: white;
-            font-size: clamp(18px, 3vw, 22px);
-            font-weight: 900;
+            font-size: clamp(16px, 2.5vw, 20px);
+            font-weight: 700;
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 8px;
             cursor: pointer;
             border: none;
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
-            animation: breathe 2s ease-in-out infinite;
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
-        }
-
-        @keyframes breathe {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
         }
 
         .cta-button:hover {
-            transform: scale(1.1) translateY(-5px);
-            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.6),
-                        0 0 30px rgba(255, 255, 255, 0.3);
-            animation: none;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(74, 144, 226, 0.4);
+            background: linear-gradient(135deg, #357abd, #2868a8);
         }
 
         .bonus-alert {
             margin-top: 30px;
-            padding: 20px 30px;
-            background: rgba(255, 222, 89, 0.2);
-            border: 3px solid #ffde59;
-            border-radius: 15px;
-            font-size: clamp(16px, 2.5vw, 20px);
-            font-weight: 700;
-            color: #ffde59;
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+            padding: 18px 25px;
+            background: rgba(74, 144, 226, 0.1);
+            border: 2px solid #4a90e2;
+            border-radius: 8px;
+            font-size: clamp(14px, 2vw, 18px);
+            font-weight: 600;
+            color: #4a90e2;
         }
 
         /* Section 2 - Urgency */
@@ -191,17 +179,16 @@ function gtag_report_conversion(url) {
         }
 
         .counter {
-            font-size: clamp(36px, 8vw, 72px);
-            font-weight: 900;
-            color: #ffde59;
+            font-size: clamp(24px, 4vw, 36px);
+            font-weight: 700;
+            color: #4a90e2;
             margin: 30px 0;
-            text-shadow: 0 0 30px rgba(255, 222, 89, 0.6);
         }
 
         .urgency-content .limit {
-            font-size: clamp(18px, 3vw, 24px);
-            color: #ff6b6b;
-            font-weight: 700;
+            font-size: clamp(16px, 2.5vw, 20px);
+            color: #e8eaed;
+            font-weight: 600;
             margin-bottom: 40px;
         }
 
@@ -449,25 +436,23 @@ function gtag_report_conversion(url) {
 
         .line-button {
             display: inline-block;
-            padding: 25px 60px;
-            background: #06c755;
+            padding: 20px 50px;
+            background: #4a90e2;
             color: white;
-            font-size: clamp(20px, 3vw, 28px);
-            font-weight: 900;
+            font-size: clamp(18px, 2.5vw, 24px);
+            font-weight: 700;
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
-            animation: breathe 2s ease-in-out infinite;
-            box-shadow: 0 10px 30px rgba(6, 199, 85, 0.4);
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
             margin-bottom: 30px;
         }
 
         .line-button:hover {
-            transform: scale(1.1) translateY(-5px);
-            box-shadow: 0 15px 40px rgba(6, 199, 85, 0.6),
-                        0 0 30px rgba(255, 255, 255, 0.3);
-            animation: none;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(74, 144, 226, 0.4);
+            background: #357abd;
         }
 
         .final-cta-text {
@@ -482,9 +467,13 @@ function gtag_report_conversion(url) {
         }
 
         .disclaimer {
-            font-size: 14px;
-            opacity: 0.7;
-            margin-top: 20px;
+            font-size: 15px;
+            opacity: 1;
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            line-height: 1.8;
         }
 
         /* Footer */
@@ -546,20 +535,19 @@ function gtag_report_conversion(url) {
             justify-content: center;
             width: 60px;
             height: 60px;
-            background: #06c755;
+            background: #4a90e2;
             border-radius: 50%;
             color: white;
             font-size: 28px;
             text-decoration: none;
-            box-shadow: 0 5px 20px rgba(6, 199, 85, 0.4);
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
             transition: all 0.3s ease;
-            animation: breathe 2s ease-in-out infinite;
         }
 
         .fixed-line a:hover {
-            transform: scale(1.15);
-            box-shadow: 0 10px 30px rgba(6, 199, 85, 0.6);
-            animation: none;
+            transform: scale(1.08);
+            box-shadow: 0 6px 16px rgba(74, 144, 226, 0.4);
+            background: #357abd;
         }
 
         @media (min-width: 768px) {
@@ -593,13 +581,12 @@ function gtag_report_conversion(url) {
     <section class="hero fade-in">
         <div class="container">
             <div class="hero-content">
-                <h1><span class="highlight">期間限定無料！</span>株式専門家が直接教える株式投資テクニック</h1>
-                <p class="subtitle">闇雲な投資にサヨナラ！<span class="highlight">「情報を見る」</span>から<span class="highlight">「投資ができる」</span>へ！逃したら1年待ち！</p>
-                <p class="seats">セミナー残席わずか、先着順</p>
-                <p class="small-text">専門知識で資産成長を加速、入門から実践まで一気通貫</p>
-                <a href="javascript:void(0)" onclick="showLine()"  class="cta-button">今すぐ無料で学習枠を獲得</a>
+                <h1>株式専門家による<span class="highlight">投資教育セミナー</span></h1>
+                <p class="subtitle">投資の基礎から実践的な分析手法まで<span class="highlight">体系的に学べる</span>オンライン講座</p>
+                <p class="small-text">※投資にはリスクが伴います。本セミナーは教育目的であり、投資収益を保証するものではありません。</p>
+                <a href="javascript:void(0)" onclick="showLine()"  class="cta-button">セミナー詳細を確認する</a>
                 <div class="bonus-alert">
-                    期間限定特典！急騰確実5銘柄を無料プレゼント
+                    無料体験セミナー開催中 | 投資の基礎知識を学べます
                 </div>
             </div>
         </div>
@@ -610,12 +597,12 @@ function gtag_report_conversion(url) {
         <div class="container">
             <div class="urgency-content">
                 <h2>
-                    今がチャンス！<br>
-                    <span class="highlight">急騰銘柄プレゼント</span>だけでなく<br>
-                    専門家と1対1で株式知識を学べる
+                    <span class="highlight">投資教育の専門家から学ぶ</span><br>
+                    実践的な株式分析と<br>
+                    投資判断の基礎知識
                 </h2>
-                <div class="counter">参加者数：9,568人突破！</div>
-                <p class="limit">定員に達し次第終了</p>
+                <div class="counter">多くの方にご参加いただいています</div>
+                <p class="limit">※投資判断は自己責任で行ってください</p>
                 <a href="javascript:void(0)" onclick="showLine()"  class="cta-button">今すぐ申し込む</a>
                 <div class="student-image">
                     <img src="assets/a1.png" style="width: 100%;">
@@ -627,23 +614,23 @@ function gtag_report_conversion(url) {
     <!-- Section 3: Features -->
     <section class="features fade-in">
         <div class="container">
-            <h2>コアハイライト / コース価値</h2>
-            <p class="features-subtitle">株式情報だけでなく、投資を質的飛躍させる3つのコア価値を提供</p>
+            <h2>セミナーの特徴</h2>
+            <p class="features-subtitle">投資知識の習得を支援する3つの学習ポイント</p>
             <div class="cards">
                 <div class="card">
                     <div class="card-number">01</div>
-                    <h3>30年以上の実戦専門家と直接交流！</h3>
-                    <p>豊富な経験を持つトップアナリストから、実践的な投資戦略と市場洞察を直接学べます</p>
+                    <h3>経験豊富な専門家による解説</h3>
+                    <p>豊富な経験を持つ講師から、実践的な投資戦略と市場分析の考え方を学べます</p>
                 </div>
                 <div class="card">
                     <div class="card-number">02</div>
-                    <h3>双方向オンライン学習会、即座に疑問を解決</h3>
-                    <p>リアルタイムで質問できる双方向形式で、あなたの疑問をその場で解消します</p>
+                    <h3>双方向オンライン学習会</h3>
+                    <p>質問できる双方向形式で、投資に関する疑問を解消できます</p>
                 </div>
                 <div class="card">
                     <div class="card-number">03</div>
-                    <h3>実戦で「潜在力ある銘柄を見極める」洞察力を養成</h3>
-                    <p>理論だけでなく、実際の市場分析を通じて、成長銘柄を発見する力を身につけます</p>
+                    <h3>実践的な分析手法の学習</h3>
+                    <p>理論だけでなく、実際の市場データを用いた分析手法を学びます<br>※分析結果は投資成果を保証するものではありません</p>
                 </div>
             </div>
         </div>
@@ -655,45 +642,45 @@ function gtag_report_conversion(url) {
             <h2>よくある質問</h2>
             <div class="faq-list">
                 <div class="faq-item">
-                    <div class="faq-question">情報が多すぎて、何が正しいか分からない</div>
+                    <div class="faq-question">投資初心者でも参加できますか？</div>
                     <div class="faq-answer">
-                        厳選されたトップ専門家が解説し、膨大な情報から本当に価値あるコア内容を抽出。信頼できる知識を提供します。
+                        はい、初心者の方でも理解できるよう基礎から解説します。投資の基本的な考え方や分析手法を段階的に学べる内容となっています。
                     </div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">無料の株式情報だけでは、理想的な結果を得にくい</div>
+                    <div class="faq-question">このセミナーで投資で儲かりますか？</div>
                     <div class="faq-answer">
-                        株式情報を提供するだけでなく、学習機会を創出し、背後のロジックを理解できるようサポート。再現可能な投資スキルを習得し、長期的な投資成功を後押しします。
+                        本セミナーは教育目的であり、投資収益を保証するものではありません。投資にはリスクが伴い、元本割れの可能性があります。学んだ知識を活用した投資判断は、ご自身の責任で行ってください。
                     </div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">一方的なセミナーは退屈で集中できない</div>
+                    <div class="faq-question">セミナーの形式はどのようなものですか？</div>
                     <div class="faq-answer">
-                        双方向Q&Aと実践ワークショップを融合し、参加感が強く飽きない学習モデルを構築。能動的な学習を促進し、理解を深めます。
+                        オンラインでの講義形式で、質疑応答の時間も設けています。実際のデータを用いた分析例なども交えながら解説します。
                     </div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">高額な投資セミナーには参加できない</div>
+                    <div class="faq-question">受講料はかかりますか？</div>
                     <div class="faq-answer">
-                        今回のオンラインセミナーは「完全無料」。すべての方に平等に高品質な投資教育を受ける機会を提供します。
+                        体験セミナーは無料でご参加いただけます。本格的なコースについては別途料金が発生する場合があります。詳細はお問い合わせください。
                     </div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">本当に専門家が授業をするの？</div>
+                    <div class="faq-question">講師の資格や経歴を教えてください</div>
                     <div class="faq-answer">
-                        登壇するアナリストやファンドマネージャーの具体的な実績と経歴を明記し、写真と簡単な紹介も掲載。信頼性を確保しています。
+                        証券会社や金融機関での実務経験を持つ講師が担当します。詳細な経歴については、お問い合わせいただければご案内いたします。
                     </div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">無料でも、後から追加費用が発生する？</div>
+                    <div class="faq-question">後から追加費用が発生しますか？</div>
                     <div class="faq-answer">
-                        「完全無料 0円」「追加費用一切なし」と明記。安心してご参加いただけます。
+                        体験セミナーは無料です。その後、有料コースへのご案内をする場合がありますが、強制ではありません。ご希望に応じてお選びいただけます。
                     </div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">内容が難しすぎてついていけない？</div>
+                    <div class="faq-question">内容が難しすぎませんか？</div>
                     <div class="faq-answer">
-                        プロモーション内容とQ&Aサービスは、初心者から上級投資家まで異なるレベルに対応。専門用語もわかりやすく解説します。
+                        基礎から段階的に解説しますので、初心者の方でも理解できる内容です。専門用語もわかりやすく説明します。
                     </div>
                 </div>
             </div>
@@ -714,7 +701,7 @@ function gtag_report_conversion(url) {
                         </div>
                     </div>
                     <div class="testimonial-content">
-                        「完全に無料のイベントとは思えない高品質！以前理解できなかったところが全て明確になり、今は自信を持って投資できています。」
+                        「投資の基本的な考え方を学ぶことができました。実際の投資判断に役立つ知識を得られたと思います。」
                     </div>
                 </div>
                 <div class="testimonial-card">
@@ -726,7 +713,7 @@ function gtag_report_conversion(url) {
                         </div>
                     </div>
                     <div class="testimonial-content">
-                        「先生方が私の質問に丁寧に答えてくださり、本当に感謝しています。学んだ知識をすぐに実践に活かします！」
+                        「質問にも丁寧に答えていただき、理解を深めることができました。学んだ内容を参考に、慎重に投資判断をしていきたいと思います。」
                     </div>
                 </div>
                 <div class="testimonial-card">
@@ -738,7 +725,7 @@ function gtag_report_conversion(url) {
                         </div>
                     </div>
                     <div class="testimonial-content">
-                        「以前は感覚だけで投資していましたが、専門家の視点を学んだ後、遂により戦略的な方法で投資できるようになりました。」
+                        「分析の基礎を学ぶことができ、投資に対する考え方が変わりました。リスク管理の重要性も理解できました。」
                     </div>
                 </div>
             </div>
@@ -748,16 +735,18 @@ function gtag_report_conversion(url) {
     <!-- Section 6: Final CTA -->
     <section class="final-cta fade-in" id="line">
         <div class="container">
-            <h2>LINE友だち追加で参加資格をロック！</h2>
-            <a  href="javascript:void(0)" onclick="showLine()"  class="line-button">今すぐLINEで友だち追加</a>
+            <h2>セミナーの詳細情報・お申し込み</h2>
+            <a  href="javascript:void(0)" onclick="showLine()"  class="line-button">お問い合わせ・詳細確認</a>
             <div class="final-cta-text">
-                限定オンラインセミナーへの参加資格を無料で獲得！<br>
-                LINE専用チャンネルで、セミナーで詳しく紹介できなかった<br>
-                <span class="highlight">「注目の急騰候補銘柄リスト」</span>も無料で入手可能！
+                オンラインセミナーの詳細情報や日程については<br>
+                お問い合わせフォームよりご確認ください。<br>
+                <span class="highlight">※投資助言ではなく、教育サービスです</span>
             </div>
             <div class="disclaimer">
-                ※ボタンをクリックすると、LINE友だち追加ページに移動します。<br>
-                ※このLINEサービスは完全無料で、一切費用は発生しません。
+                <strong>重要事項</strong><br>
+                ※本セミナーは投資教育を目的としており、特定の銘柄の推奨や投資助言を行うものではありません。<br>
+                ※投資にはリスクが伴い、元本割れの可能性があります。投資判断は自己責任で行ってください。<br>
+                ※過去の運用実績は将来の運用成果を保証するものではありません。
             </div>
         </div>
     </section>
@@ -768,11 +757,11 @@ function gtag_report_conversion(url) {
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>会社情報</h3>
-                    <p>株式投資教育の専門機関として、初心者からプロまで幅広い投資家に質の高い教育サービスを提供しています。</p>
+                    <p>株式投資教育サービス<br>運営会社：[会社名を記載]<br>所在地：[住所を記載]<br>連絡先：[連絡先を記載]</p>
                 </div>
                 <div class="footer-section">
                     <h3>セミナーについて</h3>
-                    <p>30年以上の実績を持つ専門家による双方向型オンラインセミナー。実践的な投資知識と市場分析スキルを習得できます。</p>
+                    <p>経験豊富な講師による投資教育セミナー。投資の基礎知識と分析手法について学べます。※投資成果を保証するものではありません。</p>
                 </div>
                 <div class="footer-section">
                     <h3>リンク</h3>
@@ -783,7 +772,7 @@ function gtag_report_conversion(url) {
                 </div>
                 <div class="footer-section">
                     <h3>免責事項</h3>
-                    <p>本セミナーで提供される情報は教育目的のみであり、投資助言ではありません。投資判断は自己責任で行ってください。</p>
+                    <p>本セミナーで提供される情報は教育目的のみであり、金融商品取引法に基づく投資助言ではありません。投資にはリスクが伴い、元本割れの可能性があります。投資判断および投資に関わる最終決定は、お客様ご自身の責任で行ってください。当社は投資結果について一切の責任を負いません。</p>
                 </div>
             </div>
             <div class="copyright">
