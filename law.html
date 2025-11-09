@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>特定商取引法に基づく表記 | 株式投資教育セミナー</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #001a33 0%, #003d66 100%);
+            color: white;
+            padding: 30px 0;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        header .back-link {
+            color: #00ff88;
+            text-decoration: none;
+            font-size: 14px;
+            display: inline-block;
+            margin-top: 10px;
+            transition: opacity 0.3s;
+        }
+
+        header .back-link:hover {
+            opacity: 0.8;
+        }
+
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .content p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+
+        .info-table tr {
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .info-table th {
+            background: #f8f9fa;
+            padding: 20px 15px;
+            text-align: left;
+            font-weight: 700;
+            color: #003d66;
+            width: 35%;
+            vertical-align: top;
+        }
+
+        .info-table td {
+            padding: 20px 15px;
+            color: #555;
+        }
+
+        .info-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .important-note {
+            background: #fff3cd;
+            border-left: 4px solid #ff6b00;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+
+        .important-note h3 {
+            color: #ff6b00;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .important-note p {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .investment-warning {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+
+        .investment-warning h3 {
+            color: #dc3545;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .investment-warning ul {
+            margin-left: 20px;
+            color: #333;
+        }
+
+        .investment-warning li {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            background: #001a33;
+            color: white;
+            padding: 40px 0 20px 0;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            color: #00ff88;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .footer-section p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #ccc;
+        }
+
+        .footer-section a {
+            display: block;
+            color: #ccc;
+            text-decoration: none;
+            margin-bottom: 10px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #00ff88;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #003d66;
+            color: #888;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 30px 20px;
+            }
+
+            header h1 {
+                font-size: 24px;
+            }
+
+            .info-table {
+                font-size: 14px;
+            }
+
+            .info-table th,
+            .info-table td {
+                padding: 15px 10px;
+                display: block;
+                width: 100%;
+            }
+
+            .info-table th {
+                background: #003d66;
+                color: white;
+                border-bottom: none;
+                padding-bottom: 10px;
+            }
+
+            .info-table td {
+                padding-top: 10px;
+                padding-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>特定商取引法に基づく表記</h1>
+            <a href="index.html" class="back-link">← トップページに戻る</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="content">
+            <p>特定商取引法（特定商取引に関する法律）第11条の規定に基づき、以下のとおり表示いたします。</p>
+
+            <table class="info-table">
+                <tr>
+                    <th>事業者名</th>
+                    <td>株式投資教育サービス<br>（運営会社：[会社名を記載してください]）</td>
+                </tr>
+                <tr>
+                    <th>運営統括責任者</th>
+                    <td>[代表者名を記載してください]</td>
+                </tr>
+                <tr>
+                    <th>所在地</th>
+                    <td>
+                        〒[郵便番号]<br>
+                        [住所を記載してください]<br>
+                        <span style="font-size: 14px; color: #888;">※お客様の個人情報保護の観点から、お電話でのお問い合わせは受け付けておりません。お問い合わせは下記メールアドレスまでお願いいたします。</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>電話番号</th>
+                    <td>
+                        [電話番号を記載してください]<br>
+                        <span style="font-size: 14px; color: #888;">※営業時間：平日 10:00～18:00（土日祝日を除く）<br>※お問い合わせはできる限りメールにてお願いいたします。</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>メールアドレス</th>
+                    <td>
+                        info@example.com<br>
+                        <span style="font-size: 14px; color: #888;">※お問い合わせへの回答は、原則として2営業日以内に行います。</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>販売URL</th>
+                    <td>[ウェブサイトURLを記載してください]</td>
+                </tr>
+                <tr>
+                    <th>サービス内容</th>
+                    <td>
+                        株式投資教育セミナーの提供<br>
+                        ・オンラインセミナー配信<br>
+                        ・投資教育コンテンツの提供<br>
+                        ・市場分析手法の教育<br>
+                        ・投資に関する情報提供
+                    </td>
+                </tr>
+                <tr>
+                    <th>販売価格</th>
+                    <td>
+                        各セミナー・コースの価格は、お申込みページに表示されます。<br>
+                        表示価格は消費税込みの価格です。
+                    </td>
+                </tr>
+                <tr>
+                    <th>商品代金以外の<br>必要料金</th>
+                    <td>
+                        ・インターネット接続料金<br>
+                        ・通信料金<br>
+                        ※上記料金はお客様のご負担となります。
+                    </td>
+                </tr>
+                <tr>
+                    <th>お支払い方法</th>
+                    <td>
+                        ・クレジットカード決済（VISA、MasterCard、JCB、American Express、Diners Club）<br>
+                        ・銀行振込<br>
+                        ・コンビニ決済<br>
+                        ・その他、当社が指定する決済方法
+                    </td>
+                </tr>
+                <tr>
+                    <th>お支払い時期</th>
+                    <td>
+                        クレジットカード決済：お申込み時に決済<br>
+                        銀行振込：お申込み後7日以内にお振込み<br>
+                        コンビニ決済：お申込み後7日以内にお支払い
+                    </td>
+                </tr>
+                <tr>
+                    <th>商品の引渡時期</th>
+                    <td>
+                        ・オンラインセミナー：決済確認後、指定された開催日時にアクセス情報を提供<br>
+                        ・録画コンテンツ：決済確認後、即座にアクセス可能<br>
+                        ・LINEグループへの招待：決済確認後、24時間以内
+                    </td>
+                </tr>
+                <tr>
+                    <th>返品・キャンセル<br>について</th>
+                    <td>
+                        <strong>【原則】</strong><br>
+                        当サービスは、デジタルコンテンツおよび教育サービスの性質上、お客様の都合による返品・キャンセル・返金は原則としてお受けできません。<br><br>
+
+                        <strong>【例外的に返金に応じる場合】</strong><br>
+                        以下の場合に限り、返金対応を行います：<br>
+                        ・当社の責めに帰すべき事由により、サービスが提供できない場合<br>
+                        ・セミナー開催の7日前までにお客様からキャンセルのお申し出があった場合（手数料20%を差し引いて返金）<br>
+                        ・システム障害等により、サービスが正常に利用できない場合<br><br>
+
+                        <strong>【返金不可となる場合】</strong><br>
+                        以下の場合、返金をお受けできません：<br>
+                        ・既にセミナーに参加された場合<br>
+                        ・コンテンツに一度でもアクセスされた場合<br>
+                        ・お客様の都合や、期待した内容と異なるという理由<br>
+                        ・投資結果が期待通りでなかったという理由<br><br>
+
+                        返金を希望される場合は、下記お問い合わせ先までご連絡ください。
+                    </td>
+                </tr>
+                <tr>
+                    <th>不良品・誤配送時の<br>対応</th>
+                    <td>
+                        サービスに不具合があった場合、または誤った内容が配信された場合は、速やかに修正版を提供いたします。お問い合わせフォームよりご連絡ください。
+                    </td>
+                </tr>
+                <tr>
+                    <th>表現、及び商品に<br>関する注意書き</th>
+                    <td>
+                        本サービスで提供される情報は、あくまで投資教育を目的としたものです。<br>
+                        特定の銘柄の推奨、売買の指示を行うものではありません。<br>
+                        本サービスに示された表現や再現性には個人差があり、必ずしも利益や効果を保証したものではございません。
+                    </td>
+                </tr>
+            </table>
+
+            <div class="investment-warning">
+                <h3>【重要】投資に関するリスク開示</h3>
+                <p>本サービスをご利用いただく前に、以下の重要事項を必ずお読みください。</p>
+                <ul>
+                    <li><strong>投資教育サービスであること：</strong>当サービスは投資教育を目的としたものであり、金融商品取引法に基づく投資助言または投資運用業ではありません。</li>
+                    <li><strong>投資判断の責任：</strong>投資判断および投資に関わる最終決定は、お客様ご自身の責任において行っていただく必要があります。</li>
+                    <li><strong>元本割れのリスク：</strong>株式投資には元本割れのリスクが伴います。投資した資金の一部または全部を失う可能性があります。</li>
+                    <li><strong>過去の実績：</strong>本サービスで紹介される過去の投資実績は、将来の運用成果を保証するものではありません。</li>
+                    <li><strong>利益の保証なし：</strong>本サービスを利用しても、投資による利益を保証するものではありません。</li>
+                    <li><strong>市場リスク：</strong>株式市場は、経済情勢、政治情勢、企業業績、為替変動など様々な要因により変動します。</li>
+                    <li><strong>自己責任の原則：</strong>投資に関する損失が生じた場合でも、当社は一切の責任を負いません。</li>
+                </ul>
+            </div>
+
+            <div class="important-note">
+                <h3>金融商品取引法に基づく表示</h3>
+                <p>当社は金融商品取引業者ではありません。当サービスは投資教育を目的としたものであり、以下の行為は行いません：</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>有価証券の売買の媒介、取次ぎまたは代理</li>
+                    <li>有価証券の売買に関する投資顧問契約に基づく助言</li>
+                    <li>投資一任契約に基づく運用</li>
+                    <li>特定の銘柄の売買推奨</li>
+                </ul>
+                <p style="margin-top: 15px;">投資に関する具体的なアドバイスが必要な場合は、金融商品取引業の登録を受けた投資助言業者または金融機関にご相談ください。</p>
+            </div>
+
+            <table class="info-table" style="margin-top: 40px;">
+                <tr>
+                    <th>お問い合わせ</th>
+                    <td>
+                        特定商取引法に関するお問い合わせ、その他ご不明な点がございましたら、下記までご連絡ください。<br><br>
+                        <strong>メール：</strong>info@example.com<br>
+                        <strong>受付時間：</strong>平日 10:00～18:00（土日祝日、年末年始を除く）<br><br>
+                        <span style="font-size: 14px; color: #888;">※お問い合わせには2営業日以内にご返信いたします。</span>
+                    </td>
+                </tr>
+            </table>
+
+            <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid #ddd; text-align: center; color: #888;">
+                <p>制定日：2025年1月1日<br>最終更新日：2025年1月1日</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>会社情報</h3>
+                    <p>株式投資教育サービス<br>運営会社：[会社名を記載]<br>所在地：[住所を記載]<br>連絡先：[連絡先を記載]</p>
+                </div>
+                <div class="footer-section">
+                    <h3>セミナーについて</h3>
+                    <p>経験豊富な講師による投資教育セミナー。投資の基礎知識と分析手法について学べます。※投資成果を保証するものではありません。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>リンク</h3>
+                    <a href="privacy.html">プライバシーポリシー</a>
+                    <a href="terms.html">利用規約</a>
+                    <a href="law.html">特定商取引法に基づく表記</a>
+                    <a href="contact.html">お問い合わせ</a>
+                </div>
+                <div class="footer-section">
+                    <h3>免責事項</h3>
+                    <p>本セミナーで提供される情報は教育目的のみであり、金融商品取引法に基づく投資助言ではありません。投資にはリスクが伴い、元本割れの可能性があります。</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 株式投資セミナー All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
