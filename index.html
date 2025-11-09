@@ -605,7 +605,10 @@ function gtag_report_conversion(url) {
                 <p class="limit">※投資判断は自己責任で行ってください</p>
                 <a href="javascript:void(0)" onclick="showLine()"  class="cta-button">今すぐ申し込む</a>
                 <div class="student-image">
-                    <img src="assets/a1.png" style="width: 100%;">
+                    <canvas id="canvas-a1" data-image="assets/a1.png" data-image-name="a1" style="width: 100%; display: block;"></canvas>
+                    <!-- To add more images, simply add another canvas element:
+                    <canvas id="canvas-a2" data-image="assets/a2.png" data-image-name="a2" style="width: 100%; display: block; margin-top: 20px;"></canvas>
+                    -->
                 </div>
             </div>
         </div>
@@ -782,6 +785,335 @@ function gtag_report_conversion(url) {
     </footer>
 
    <script>
+        /**
+         * Canvas Image Rendering and Google Ads Tracking System
+         *
+         * USAGE:
+         * 1. Add canvas elements with data-image and data-image-name attributes:
+         *    <canvas id="canvas-a2" data-image="assets/a2.png" data-image-name="a2"></canvas>
+         *
+         * 2. The system will automatically:
+         *    - Load and render images to canvas with high DPI support
+         *    - Extract image metadata and create SHA256 hash
+         *    - Track image load, visibility, and click events
+         *    - Send data to Google Ads with custom parameters
+         *
+         * 3. Google Ads Events Tracked:
+         *    - image_loaded: When canvas finishes rendering
+         *    - image_visible: When image enters viewport
+         *    - image_clicked: When user clicks on canvas
+         *
+         * 4. Debugging:
+         *    - Open browser console and type: CanvasImageTracker.getTrackingData()
+         *    - Set CanvasImageTracker.config.enableDebug = false to disable logs
+         *    - All events are visible in Google Analytics/Ads real-time reports
+         *
+         * 5. Google Ads Parameters Sent:
+         *    - image_id: Unique identifier for each image instance
+         *    - image_name: Name from data-image-name attribute
+         *    - image_hash: SHA256 hash of image data (for Enhanced Conversions)
+         *    - image_width/height: Canvas dimensions
+         *    - device_pixel_ratio: Screen density info
+         *    - visibility_ratio: How much of image is visible
+         *    - click_x/y: Click position as percentage
+         */
+        // Canvas Image Rendering and Google Ads Tracking System
+        const CanvasImageTracker = {
+            // Configuration
+            config: {
+                enableDebug: true,
+                retryAttempts: 3,
+                retryDelay: 1000,
+                trackingDelay: 500
+            },
+
+            // Store tracked images
+            trackedImages: new Map(),
+
+            // SHA256 Hash Function using Web Crypto API
+            async sha256Hash(message) {
+                try {
+                    const msgBuffer = new TextEncoder().encode(message);
+                    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+                    const hashArray = Array.from(new Uint8Array(hashBuffer));
+                    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+                    return hashHex;
+                } catch (error) {
+                    console.error('SHA256 hashing failed:', error);
+                    return null;
+                }
+            },
+
+            // Extract image metadata
+            async getImageMetadata(canvas, imageName, imageSrc) {
+                const timestamp = Date.now();
+                const imageData = canvas.toDataURL('image/png');
+                const imageHash = await this.sha256Hash(imageData);
+
+                return {
+                    id: `img_${imageName}_${timestamp}`,
+                    name: imageName,
+                    src: imageSrc,
+                    width: canvas.width,
+                    height: canvas.height,
+                    timestamp: timestamp,
+                    hash: imageHash,
+                    dataUrl: imageData.substring(0, 100) + '...',
+                    size: imageData.length
+                };
+            },
+
+            // Load and render image to canvas
+            loadImageToCanvas(canvas, imageSrc, imageName, attemptCount = 0) {
+                return new Promise((resolve, reject) => {
+                    const img = new Image();
+                    const ctx = canvas.getContext('2d');
+
+                    img.onload = async () => {
+                        try {
+                            const dpr = window.devicePixelRatio || 1;
+                            const rect = canvas.getBoundingClientRect();
+
+                            canvas.width = rect.width * dpr;
+                            canvas.height = (rect.width * img.height / img.width) * dpr;
+                            canvas.style.height = (rect.width * img.height / img.width) + 'px';
+
+                            ctx.scale(dpr, dpr);
+                            ctx.imageSmoothingEnabled = true;
+                            ctx.imageSmoothingQuality = 'high';
+
+                            ctx.drawImage(img, 0, 0, rect.width, rect.width * img.height / img.width);
+
+                            const metadata = await this.getImageMetadata(canvas, imageName, imageSrc);
+                            this.trackedImages.set(canvas.id, metadata);
+
+                            this.sendImageLoadEvent(metadata);
+
+                            if (this.config.enableDebug) {
+                                console.log('Canvas image loaded:', metadata);
+                            }
+
+                            resolve(metadata);
+                        } catch (error) {
+                            console.error('Canvas rendering failed:', error);
+                            reject(error);
+                        }
+                    };
+
+                    img.onerror = () => {
+                        if (attemptCount < this.config.retryAttempts) {
+                            console.warn(`Image load failed, retrying... (${attemptCount + 1}/${this.config.retryAttempts})`);
+                            setTimeout(() => {
+                                this.loadImageToCanvas(canvas, imageSrc, imageName, attemptCount + 1)
+                                    .then(resolve)
+                                    .catch(reject);
+                            }, this.config.retryDelay);
+                        } else {
+                            console.error('Image load failed after retries, falling back to img tag');
+                            this.fallbackToImgTag(canvas, imageSrc);
+                            reject(new Error('Image load failed'));
+                        }
+                    };
+
+                    img.src = imageSrc;
+                });
+            },
+
+            // Fallback to regular img tag if canvas fails
+            fallbackToImgTag(canvas, imageSrc) {
+                const img = document.createElement('img');
+                img.src = imageSrc;
+                img.style.width = '100%';
+                img.alt = 'Image';
+                canvas.parentNode.replaceChild(img, canvas);
+            },
+
+            // Send image load event to Google Ads
+            sendImageLoadEvent(metadata) {
+                if (typeof gtag !== 'function') {
+                    console.warn('gtag not available');
+                    return;
+                }
+
+                try {
+                    gtag('event', 'image_loaded', {
+                        'event_category': 'Canvas Image',
+                        'event_label': metadata.name,
+                        'image_id': metadata.id,
+                        'image_name': metadata.name,
+                        'image_hash': metadata.hash,
+                        'image_width': metadata.width,
+                        'image_height': metadata.height,
+                        'image_size': metadata.size,
+                        'device_pixel_ratio': window.devicePixelRatio || 1,
+                        'timestamp': metadata.timestamp
+                    });
+
+                    if (this.config.enableDebug) {
+                        console.log('Image load event sent to Google Ads:', metadata.name);
+                    }
+                } catch (error) {
+                    console.error('Failed to send image load event:', error);
+                }
+            },
+
+            // Send image visibility event
+            sendImageVisibilityEvent(metadata, visibilityRatio) {
+                if (typeof gtag !== 'function') return;
+
+                try {
+                    gtag('event', 'image_visible', {
+                        'event_category': 'Canvas Image',
+                        'event_label': metadata.name,
+                        'image_id': metadata.id,
+                        'image_name': metadata.name,
+                        'image_hash': metadata.hash,
+                        'visibility_ratio': visibilityRatio,
+                        'timestamp': Date.now()
+                    });
+
+                    if (this.config.enableDebug) {
+                        console.log('Image visibility event:', metadata.name, visibilityRatio);
+                    }
+                } catch (error) {
+                    console.error('Failed to send visibility event:', error);
+                }
+            },
+
+            // Send image click event
+            sendImageClickEvent(metadata, clickX, clickY) {
+                if (typeof gtag !== 'function') return;
+
+                try {
+                    gtag('event', 'image_clicked', {
+                        'event_category': 'Canvas Image',
+                        'event_label': metadata.name,
+                        'image_id': metadata.id,
+                        'image_name': metadata.name,
+                        'image_hash': metadata.hash,
+                        'click_x': clickX,
+                        'click_y': clickY,
+                        'timestamp': Date.now()
+                    });
+
+                    if (this.config.enableDebug) {
+                        console.log('Image click event:', metadata.name, clickX, clickY);
+                    }
+                } catch (error) {
+                    console.error('Failed to send click event:', error);
+                }
+            },
+
+            // Setup visibility tracking using Intersection Observer
+            setupVisibilityTracking(canvas) {
+                const metadata = this.trackedImages.get(canvas.id);
+                if (!metadata) return;
+
+                let visibilityTracked = false;
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && !visibilityTracked) {
+                            visibilityTracked = true;
+                            setTimeout(() => {
+                                this.sendImageVisibilityEvent(metadata, entry.intersectionRatio);
+                            }, this.config.trackingDelay);
+                        }
+                    });
+                }, {
+                    threshold: [0.1, 0.5, 0.9]
+                });
+
+                observer.observe(canvas);
+            },
+
+            // Setup click tracking
+            setupClickTracking(canvas) {
+                const metadata = this.trackedImages.get(canvas.id);
+                if (!metadata) return;
+
+                canvas.addEventListener('click', (e) => {
+                    const rect = canvas.getBoundingClientRect();
+                    const x = Math.round((e.clientX - rect.left) / rect.width * 100);
+                    const y = Math.round((e.clientY - rect.top) / rect.height * 100);
+                    this.sendImageClickEvent(metadata, x, y);
+                });
+
+                canvas.style.cursor = 'pointer';
+            },
+
+            // Initialize all canvas elements
+            async initializeAllCanvases() {
+                const canvases = document.querySelectorAll('canvas[data-image]');
+
+                if (canvases.length === 0) {
+                    console.warn('No canvas elements with data-image attribute found');
+                    return;
+                }
+
+                for (const canvas of canvases) {
+                    try {
+                        const imageSrc = canvas.getAttribute('data-image');
+                        const imageName = canvas.getAttribute('data-image-name') || canvas.id;
+
+                        await this.loadImageToCanvas(canvas, imageSrc, imageName);
+                        this.setupVisibilityTracking(canvas);
+                        this.setupClickTracking(canvas);
+                    } catch (error) {
+                        console.error('Failed to initialize canvas:', canvas.id, error);
+                    }
+                }
+
+                console.log('Canvas Image Tracker initialized:', this.trackedImages.size, 'images');
+            },
+
+            // Get tracking data for debugging
+            getTrackingData() {
+                return {
+                    totalImages: this.trackedImages.size,
+                    images: Array.from(this.trackedImages.values())
+                };
+            }
+        };
+
+        // Enhanced conversion tracking with image data
+        function gtag_report_conversion_with_image(url, imageData) {
+            var callback = function () {
+                if (typeof(url) != 'undefined') {
+                    window.location = url;
+                }
+            };
+
+            const conversionData = {
+                'send_to': 'AW-10952718378/X-muCOSknLUbEKrw1OYo',
+                'transaction_id': '',
+                'event_callback': callback
+            };
+
+            if (imageData) {
+                conversionData.enhanced_conversion_data = {
+                    image_id: imageData.id,
+                    image_name: imageData.name,
+                    image_hash: imageData.hash
+                };
+            }
+
+            gtag('event', 'conversion', conversionData);
+            return false;
+        }
+
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                CanvasImageTracker.initializeAllCanvases();
+            });
+        } else {
+            CanvasImageTracker.initializeAllCanvases();
+        }
+
+        // Expose for debugging in console
+        window.CanvasImageTracker = CanvasImageTracker;
+
         // 渐入动画
         const observerOptions = {
             threshold: 0.1,
